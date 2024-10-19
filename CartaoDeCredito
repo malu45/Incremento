@@ -1,0 +1,32 @@
+public class CartaoDeCredito {
+    private String numero;
+    private String nomeTitular;
+    private String cpfTitular;
+    private double limite;
+    private double saldo;
+
+    public CartaoDeCredito(String numero, String nomeTitular, String cpfTitular, double limite) {
+        this.numero = numero;
+        this.nomeTitular = nomeTitular;
+        this.cpfTitular = cpfTitular;
+        this.limite = limite;
+        this.saldo = 0.0;
+    }
+
+         public void consultarSaldo() {
+            System.out.printf("Seu saldo atual é: R$ %.2f\n", saldo);
+        }
+
+         public void consultarLimite() {
+        System.out.printf("Seu limite disponível é: R$ %.2f\n", limite - saldo);
+        }
+
+        public void realizarTransacao(double valor) {
+        if (valor <= limite - saldo) {
+            saldo += valor;
+            System.out.printf("Transação realizada com sucesso. Novo saldo: R$ %.2f\n", saldo);
+        } else {
+            System.out.println("Saldo insuficiente para realizar a transação.");
+        }
+       }  
+ }
