@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class ClassePrincipal {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner (System.in);
+        System.out.print("Digite o numero do cartão: ");
+        String numero = scanner.nextLine();
+        System.out.print("Digite o nome do titular: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite o cpf do titular: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Digite o limite do cartão: ");
+        double limite = scanner.nextDouble();
+
+        CartaoDeCredito cartao= new CartaoDeCredito(numero,nome,cpf,limite);
+
+        int opcao;
+        do {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Realizar Transação");
+            System.out.println("2. Consultar Limite");
+            System.out.println("3. Consultar Saldo");
+            System.out.println("4. Sair");
+            System.out.print("Digite a opção desejada: ");
+            opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o valor da transação: ");
+                    double valor = scanner.nextDouble();
+                    cartao.realizarTransacao(valor);
+                    break;
+                case 2:
+                    cartao.consultarLimite();
+                    break;
+                case 3:
+                    cartao.consultarSaldo();
+                    break;
+                case 4:
+                    System.out.println("Encerrando o programa.");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (opcao != 4);
+     
+
+    } 
+
+}
