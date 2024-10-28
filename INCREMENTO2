@@ -1,0 +1,64 @@
+public class CartaoDeCredito {
+    private String numero;
+    private String nomeTitular;
+    private String cpfTitular;
+    private double limite;
+    private double saldo;
+
+    // Construtor
+    public CartaoDeCredito(String numero, String nomeTitular, String cpfTitular, double limite) {
+        this.numero = numero;
+        this.nomeTitular = nomeTitular;
+        this.cpfTitular = cpfTitular;
+        this.limite = limite;
+        this.saldo = 0.0;
+    }
+
+    // Getters e setters
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getNomeTitular() {
+        return nomeTitular;
+    }
+
+    public String getCpfTitular() {
+        return cpfTitular;
+    }
+
+    public double getLimite() {
+        return limite;
+    }
+
+    public void setLimite(double novoLimite) {
+        this.limite = novoLimite;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    // Métodos para manipular o cartão
+    public void consultarSaldo() {
+        System.out.printf("Seu saldo atual é: R$ %.2f\n", getSaldo());
+    }
+
+    public void consultarLimite() {
+        System.out.printf("Seu limite disponível é: R$ %.2f\n", getLimite() - getSaldo());
+    }
+
+    public void realizarTransacao(double valor) {
+        if (valor <= getLimite() - getSaldo()) {
+            saldo += valor;
+            System.out.printf("Transação realizada com sucesso. Novo saldo: R$ %.2f\n", getSaldo());
+        } else {
+            System.out.println("Saldo insuficiente para realizar a transação.");
+        }
+    }
+
+    public void alterarLimite(double novoLimite) {
+        setLimite(novoLimite);
+        System.out.printf("Limite alterado com sucesso. Novo limite: R$ %.2f\n", getLimite());
+    }
+}
