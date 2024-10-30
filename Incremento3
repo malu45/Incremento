@@ -1,0 +1,44 @@
+public class cartaodecredito2 {
+    public class CartaoDeCredito {
+        private String numero;
+        private String nomeTitular;
+        private String cpfTitular;
+        private double limite;
+        private double saldo;
+        private double taxaCashback;
+    
+        public CartaoDeCredito(String numero, String nomeTitular, String cpfTitular) {
+            this(numero, nomeTitular, cpfTitular, 1000.0, 0.0);
+        }
+
+        public CartaoDeCredito(String numero, String nomeTitular, String cpfTitular, double limite, double taxaCashback) {
+            this.numero = numero;
+            this.nomeTitular = nomeTitular;
+            this.cpfTitular = cpfTitular;
+            this.limite = limite;
+            this.saldo = 0.0;
+            this.taxaCashback = taxaCashback;
+        }
+    
+       
+        public double getLimiteDisponivel() {
+            return limite - saldo;
+        }
+
+        public void realizarTransacao(double valor) {
+            realizarTransacao(valor, 0.0);
+        }
+    
+        public void realizarTransacao(double valor, double taxaCashback) {
+            if (valor <= getLimiteDisponivel()) {
+                saldo += valor;
+                double valorCashback = valor * taxaCashback;
+                
+                System.out.printf("Transação realizada com sucesso. Novo saldo: R$ %.2f. Cashback: R$ %.2f\n", saldo, valorCashback);
+            } else {
+                System.out.println("Saldo insuficiente para realizar a transação.");
+            }
+        }
+    
+    }
+}
